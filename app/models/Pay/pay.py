@@ -8,10 +8,17 @@ from django.db import models
 # Other imports
 from app.models.utils import Encryption
 import binascii
+from boto3.s3.connection import S3Connection
+from boto3.s3.key import Key
+
+
+
 
 
 @python_2_unicode_compatible
 class Pay(models.Model):
+    conn = S3Connection('AKIAIOSFODNN7EXAMPLE','wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY')
+    bucket = conn.create_bucket('mybucket')
     """
     Class defining the Pay model
 
